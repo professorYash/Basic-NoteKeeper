@@ -1,0 +1,112 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.notes-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+header {
+  height: 75px;
+  background-color: #00bcb4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.noteInput {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.noteInput form {
+  display: flex;
+  flex-direction: column;
+}
+
+.noteInput form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none; /* Remove the underline when clicked */
+}
+
+.noteInput form button {
+  padding: 10px;
+  background-color: #00bcb4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.noteInput form button:hover {
+  background-color: #008c83;
+}
+
+.notesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align notes column-wise */
+}
+
+.note {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  margin: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.note:hover {
+  transform: scale(1.05);
+}
+
+.note h1 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note button {
+  padding: 8px;
+  background-color: #ed436d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.note button:hover {
+  background-color: #c62045;
+}
