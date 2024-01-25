@@ -17,34 +17,6 @@ function NoteInput(props) {
     });
   };
 
-  // const doSomeMagic = function (fn, delay) {
-  //   let timeOutId;
-  //   return function (...args) {
-  //     if (timeOutId) {
-  //       clearTimeout(timeOutId);
-  //     }
-  //     timeOutId = setTimeout(() => {
-  //       fn.call(this, ...args);
-  //     }, delay);
-  //   };
-  // };
-
-  // const betterFunction = doSomeMagic(handleChange, 300);
-
-  /*
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return (...args) => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      timeoutId = setTimeout(() => {
-        func.call(this, ...args);
-      }, delay);
-    };
-  };
-  */
-
   const addNote = (event) => {
     props.onAdd(note);
     setNote({
