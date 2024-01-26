@@ -33,7 +33,7 @@ function NoteInput(props) {
           name="title"
           className="form-control"
           onChange={handleChange}
-          placeholder="Title..."
+          placeholder="Title...['late night thoughts', 'my dream job']"
           value={note.title}
         />
         <input
@@ -41,7 +41,7 @@ function NoteInput(props) {
           name="content"
           className="form-control"
           onChange={handleChange}
-          placeholder="Content..."
+          placeholder="Content... ['mujhe lagta ki ab kuchh nahi ho sakta', 'To sleep all day without caring anything']"
           value={note.content}
         />
         <button className="btn btn-secondary" type="submit">

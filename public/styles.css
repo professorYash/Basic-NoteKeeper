@@ -80,6 +80,7 @@ header h1 {
   width: 300px;
   margin: 20px;
   transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .note:hover {
