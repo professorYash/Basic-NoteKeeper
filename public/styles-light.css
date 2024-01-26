@@ -1,0 +1,32 @@
+.app-container {
+  background-color: #f4f4f4;
+}
+
+.toggle-button.light {
+  background-color: #00bcb4;
+  color: #fff;
+}
+
+.toggle-button:hover {
+  background-color: #ddd;
+}
+
+.note-input {
+  background-color: #fff;
+}
+
+.note {
+  background-color: #fff;
+}
+
+.full-page-view .modal {
+  background-color: #fff;
+}
+
+.modal h1 {
+  color: #333;
+}
+
+.modal p {
+  color: #666;
+}

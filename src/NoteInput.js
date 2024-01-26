@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function NoteInput(props) {
   const [note, setNote] = useState({
@@ -25,8 +24,9 @@ function NoteInput(props) {
     });
     event.preventDefault();
   };
+
   return (
-    <div className="noteInput">
+    <div className="note-input">
       <form onSubmit={addNote}>
         <input
           type="text"
@@ -36,13 +36,13 @@ function NoteInput(props) {
           placeholder="Title...['late night thoughts', 'my dream job']"
           value={note.title}
         />
-        <input
-          type="text"
+        <textarea
           name="content"
           className="form-control"
           onChange={handleChange}
           placeholder="Content... ['mujhe lagta ki ab kuchh nahi ho sakta', 'To sleep all day without caring anything']"
           value={note.content}
+          rows={4}
         />
         <button className="btn btn-secondary" type="submit">
           Add

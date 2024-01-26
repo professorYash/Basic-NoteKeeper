@@ -1,0 +1,60 @@
+.app-container {
+  background-color: #254343;
+}
+
+.toggle-button.dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.toggle-button:hover {
+  background-color: #ddd;
+}
+
+.note-input {
+  background-color: #437a7a;
+}
+
+.note-input form input {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.note-input form input::placeholder {
+  color: #fff;
+}
+
+.note-input form input:focus {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.note-input form textarea {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.note-input form textarea::placeholder {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.note-input form textarea:focus {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.note {
+  background-color: #2f4f4f;
+  color: #f4f4f4;
+}
+
+.full-page-view .modal {
+  background-color: #2f4f4f;
+}
+
+.modal h1,
+.modal p,
+.modal .note-date {
+  color: #f4f4f4;
+}
