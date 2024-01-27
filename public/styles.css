@@ -15,7 +15,6 @@ body {
   flex-direction: column;
   position: relative;
   height: 100vh;
-  width: 100vw;
 }
 
 .notes-wrapper {
@@ -204,6 +203,44 @@ header .button-container {
 
 .modal button:hover {
   background-color: #c62045;
+}
+
+.paginate-button {
+  margin: 0px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paginate-button button:disabled {
+  background-color: #cccccc;
+  color: #808080;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.back-button,
+.forward-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%; 
+  cursor: pointer;
+  margin: 10px;
+}
+
+.back-button:hover,
+.forward-button:hover {
+  background-color: #e0e0e0; /* Adjust hover color */
+}
+
+/* Additional styling for icons (optional) */
+.back-button svg,
+.forward-button svg {
+  width: 20px; /* Adjust icon size */
+  height: 20px;
+  fill: #4a4a4a; /* Adjust icon color */
 }
 
 @media only screen and (max-width: 768px) {

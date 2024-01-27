@@ -2,6 +2,10 @@
   background-color: #254343;
 }
 
+.notes-wrapper {
+  background-color: #254343;
+}
+
 .toggle-button.dark {
   background-color: #333;
   color: #fff;
@@ -57,4 +61,13 @@
 .modal p,
 .modal .note-date {
   color: #f4f4f4;
+}
+
+.paginate-button {
+  background-color: #254343;
+}
+
+.back-button,
+.forward-button {
+  background-color: #f0f0f0; 
 }

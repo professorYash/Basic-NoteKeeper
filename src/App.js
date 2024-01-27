@@ -1,36 +1,45 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+// Core components
 import Header from "./Header";
 import NoteInput from "./NoteInput";
 import Note from "./Note";
-import axios from "axios";
+
+// Icons
+import { GrClose } from "react-icons/gr";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
+// Utilities
+import fetchNotes from "./utils/fetchNotes";
+import convertUtcToIst from "./utils/dateTimeFormatter";
+
+// Third-party library
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GrClose } from "react-icons/gr";
-import convertUtcToIst from "./utils/dateTimeFormatter";
+
 
 function App() {
   const [notes, setNotes] = useState([]);
   const [showFullPageView, setShowFullPageView] = useState(false);
   const [fullPageNoteData, setFullPageNoteData] = useState({});
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [previousPageNull, setPreviousPageNull] = useState(false);
+  const [nextPageNull, setNextPageNull] = useState(false);
 
   useEffect(() => {
-    fetchNotes();
-  }, []);
+    fetchNotes(currentPage).then((data) => {
+      if (data.data) {
+        setNotes(data.data);
+        setPreviousPageNull(data.previousValueNull);
+        setNextPageNull(data.nextValueNull);
+      } else if (data.message) {
+        toast.error(data.message);
+      }
+    });
+  }, [currentPage]);
 
-  const fetchNotes = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/notes`);
-      setNotes(response.data.data);
-    } catch (error) {
-      if (error.message === 'Network Error') {
-        toast.error("Unable to fetch notes, Server Issue. Please try after some time!!!");
-      }
-      else {
-        toast.error(error.message);
-      }
-    }
-  };
   useEffect(() => {
     const themeStylesheet = isDarkMode ? `${process.env.PUBLIC_URL}/styles-dark.css` : `${process.env.PUBLIC_URL}/styles-light.css`;
     const existingLink = document.getElementById("theme-stylesheet");
@@ -54,6 +63,14 @@ function App() {
     }
   };
 
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   const closeFullPageView = () => {
     setShowFullPageView(false);
   };
@@ -66,8 +83,6 @@ function App() {
   const toggleDarkMode = (darkMode) => {
     setIsDarkMode(!darkMode);
   };
-
-  console.log("fullPageViewRef");
 
   return (
     <div className="app-container">
@@ -86,6 +101,10 @@ function App() {
             />
           );
         })}
+      </div>
+      <div className="paginate-button">
+        <button className="back-button" onClick={handlePreviousPage} disabled={previousPageNull}><IoIosArrowBack /></button>
+        <button className="forward-button" onClick={handleNextPage} disabled={nextPageNull}><IoIosArrowForward /></button>
       </div>
       {showFullPageView && (
         <div className="full-page-view">
