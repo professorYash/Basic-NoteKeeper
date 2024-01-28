@@ -27,6 +27,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [previousPageNull, setPreviousPageNull] = useState(false);
   const [nextPageNull, setNextPageNull] = useState(false);
+  const [hideScrollbar, setHideScrollbar] = useState(false);
 
   useEffect(() => {
     fetchNotes(currentPage).then((data) => {
@@ -55,6 +56,28 @@ function App() {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    if (showFullPageView) {
+      const pageContent = document.querySelector('.pageContent');
+      console.log(pageContent.scrollHeight, pageContent.clientHeight * 0.8);
+      const handleResize = () => {
+        if (pageContent.scrollHeight > 0.8 * pageContent.clientHeight) {
+          setHideScrollbar(false);
+        } else if (pageContent.scrollHeight < 0.8 * pageContent.clientHeight){
+          setHideScrollbar(true);
+        }
+      };
+
+      // Check on initial render and add resize listener
+      handleResize();
+      window.addEventListener('resize', handleResize);
+
+      // Cleanup the event listener on component unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, [showFullPageView]);
   const addNote = async (newNote) => {
     const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, { title: newNote.title, content: newNote.content });
     if (response.status === 200) {
@@ -110,7 +133,9 @@ function App() {
         <div className="full-page-view">
           <div className="modal">
             <h1>{fullPageNoteData.title}</h1>
-            <p>{fullPageNoteData.content}</p>
+            <div className={`pageContent ${hideScrollbar ? 'hide-scrollbar' : ''}`}>
+              <p>{fullPageNoteData.content}</p>
+            </div>
             <button onClick={closeFullPageView}><GrClose /></button>
             <p className="note-date"><strong>{convertUtcToIst(fullPageNoteData.createdAt)}</strong></p>
           </div>
