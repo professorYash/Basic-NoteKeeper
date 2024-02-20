@@ -38,14 +38,14 @@ function NoteInput(props) {
           name="title"
           className="form-control"
           onChange={handleChange}
-          placeholder="Title...['late night thoughts', 'my dream job']"
+          placeholder="Title...['Morning Meditation', 'Mindful Moments']"
           value={note.title}
         />
         <textarea
           name="content"
           className="form-control"
           onChange={handleChange}
-          placeholder="Content... ['mujhe lagta ki ab kuchh nahi ho sakta', 'To sleep all day without caring anything']"
+          placeholder="Content... ['Reflecting on the sunrise and setting intentions for the day ahead.', 'Noticing the simple joys around me and embracing the present moment.']"
           value={note.content}
           rows={4}
         />
