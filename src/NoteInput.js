@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {toast} from "react-toastify"
 
 function NoteInput(props) {
   const [note, setNote] = useState({
@@ -17,11 +18,15 @@ function NoteInput(props) {
   };
 
   const addNote = (event) => {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: "",
-    });
+    if (note.title === '' || note.content === '') {
+      toast.warning("Please fill all the fields!!!")
+    } else {
+      props.onAdd(note);
+      setNote({
+        title: "",
+        content: "",
+      });
+    }
     event.preventDefault();
   };
 

@@ -23,6 +23,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [showFullPageView, setShowFullPageView] = useState(false);
   const [fullPageNoteData, setFullPageNoteData] = useState({});
+  const [fullPageNoteDataContent, setFullPageNoteDataContent] = useState([]);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [previousPageNull, setPreviousPageNull] = useState(false);
@@ -59,20 +60,17 @@ function App() {
   useEffect(() => {
     if (showFullPageView) {
       const pageContent = document.querySelector('.pageContent');
-      console.log(pageContent.scrollHeight, pageContent.clientHeight * 0.8);
       const handleResize = () => {
-        if (pageContent.scrollHeight > 0.8 * pageContent.clientHeight) {
+        if (pageContent.scrollHeight > pageContent.clientHeight) {
           setHideScrollbar(false);
-        } else if (pageContent.scrollHeight < 0.8 * pageContent.clientHeight){
+        } else if (pageContent.scrollHeight === pageContent.clientHeight) {
           setHideScrollbar(true);
         }
       };
 
-      // Check on initial render and add resize listener
       handleResize();
       window.addEventListener('resize', handleResize);
 
-      // Cleanup the event listener on component unmount
       return () => {
         window.removeEventListener('resize', handleResize);
       };
@@ -82,7 +80,15 @@ function App() {
     const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, { title: newNote.title, content: newNote.content });
     if (response.status === 200) {
       toast.success("Successfully added, Thanks for sharing!!!");
-      fetchNotes();
+      fetchNotes(currentPage).then((data) => {
+        if (data.data) {
+          setNotes(data.data);
+          setPreviousPageNull(data.previousValueNull);
+          setNextPageNull(data.nextValueNull);
+        } else if (data.message) {
+          toast.error(data.message);
+        }
+      });
     }
   };
 
@@ -96,11 +102,17 @@ function App() {
 
   const closeFullPageView = () => {
     setShowFullPageView(false);
+    setFullPageNoteData({});
+    setFullPageNoteDataContent([])
   };
 
   const getFullPageView = (note) => {
     setShowFullPageView(true);
     setFullPageNoteData(note);
+    if (fullPageNoteData) {
+      const content = note?.content.split("\n");
+      setFullPageNoteDataContent(content)
+    }
   };
 
   const toggleDarkMode = (darkMode) => {
@@ -134,7 +146,9 @@ function App() {
           <div className="modal">
             <h1>{fullPageNoteData.title}</h1>
             <div className={`pageContent ${hideScrollbar ? 'hide-scrollbar' : ''}`}>
-              <p>{fullPageNoteData.content}</p>
+              {fullPageNoteDataContent && fullPageNoteDataContent?.map((paragraph, index) =>
+                <p key={index}>{paragraph}</p>
+              )}
             </div>
             <button onClick={closeFullPageView}><GrClose /></button>
             <p className="note-date"><strong>{convertUtcToIst(fullPageNoteData.createdAt)}</strong></p>

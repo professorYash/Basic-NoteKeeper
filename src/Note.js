@@ -5,6 +5,7 @@ function Note(props) {
   const setFullPageNoteData = () => {
     props.onNoteClick({ title: props.title, content: props.content, createdAt: props.createdAt });
   };
+
   return (
     <div className="note" id={props.id} onClick={setFullPageNoteData}>
       <h1>{props.title}</h1>

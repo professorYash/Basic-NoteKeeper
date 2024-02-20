@@ -113,6 +113,15 @@ header .button-container {
 .note .note-date {
   font-size: 12px;
   text-align: right;
+  /* margin-top: 10px; */
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
 .note h1 {
@@ -156,7 +165,6 @@ header .button-container {
 }
 
 .full-page-view .modal {
-
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -180,6 +188,8 @@ header .button-container {
   max-height: 80%;
   overflow-y: scroll;
   margin-bottom: 10px;
+  scrollbar-width: thin;
+  padding-right: 5px;
 }
 
 .modal .pageContent.hide-scrollbar {
@@ -211,6 +221,14 @@ header .button-container {
   bottom: -10px;
   right: 20px;
   /* margin: 10px 20px 10px 0px; */
+  background-color: #ff8177;
+  background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
+  background-size: 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
 .modal button:hover {
@@ -237,22 +255,21 @@ header .button-container {
   width: 40px;
   height: 40px;
   border: none;
-  border-radius: 50%; 
+  border-radius: 50%;
   cursor: pointer;
   margin: 10px;
 }
 
 .back-button:hover,
 .forward-button:hover {
-  background-color: #e0e0e0; /* Adjust hover color */
+  background-color: #e0e0e0;
 }
 
-/* Additional styling for icons (optional) */
 .back-button svg,
 .forward-button svg {
-  width: 20px; /* Adjust icon size */
+  width: 20px;
   height: 20px;
-  fill: #4a4a4a; /* Adjust icon color */
+  fill: #4a4a4a;
 }
 
 @media only screen and (max-width: 768px) {
